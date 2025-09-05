@@ -29,5 +29,6 @@ public class QualPlanetaUsar {
                 System.out.println("Você é um ET");
                 break;
         }
+
     }
 }
