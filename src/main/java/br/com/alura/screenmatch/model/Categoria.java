@@ -5,7 +5,9 @@ public enum Categoria {
     ROMANCE("Romance"),
     COMEDIA("Comedy"),
     DRAMA("Drama"),
+    VIDA_REAL("Reality-TV"),
     CRIME("Crime");
+
 
     /*Abaixo as categorias que vem conforme o Json*/
     private String categoriaOmdb;

@@ -3,6 +3,7 @@ package br.com.alura.screenmatch.principal;
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.model.Episodio;
+import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
 
@@ -82,7 +83,18 @@ public class Principal {
     }
 
     private void listasSeriesBuscadas(){
+        List<Serie> listaSeries = new ArrayList<>();
+        //pegar os dados de dadosSerie e atribuir na lista de Serie
+        listaSeries = dadosSeries.stream()
+                //pra cada dadoSerie será criada uma nova série
+                .map(dadosSerie -> new Serie(dadosSerie))
+                //coletado numa nova lista
+                        .collect(Collectors.toList());
         //imprimindo as séries adicionadas na busca
-        dadosSeries.forEach(System.out::println);
+        listaSeries.stream()
+                //ordenando a listaSerie por Gênero
+                .sorted(Comparator.comparing(Serie::getGenero))
+                //imprimindo a listaSerie
+                .forEach(System.out::println);
     }
 }
