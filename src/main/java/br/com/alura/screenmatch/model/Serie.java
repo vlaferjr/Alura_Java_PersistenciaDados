@@ -1,5 +1,8 @@
 package br.com.alura.screenmatch.model;
 
+import br.com.alura.screenmatch.service.ConsultaChatGPT;
+import br.com.alura.screenmatch.service.traducao.ConsultaMyMemory;
+
 import java.util.OptionalDouble;
 
 public class Serie {
@@ -28,7 +31,8 @@ public class Serie {
         this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
         this.atores = dadosSerie.atores();
         this.poster = dadosSerie.poster();
-        this.sinopse = dadosSerie.sinopse();
+        //chamando o método obterTradução para traduzir a sinopse
+        this.sinopse = ConsultaMyMemory.obterTraducao(dadosSerie.sinopse()).trim();
     }
 
     /*Getters e Setters */
