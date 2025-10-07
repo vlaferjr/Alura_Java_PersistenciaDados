@@ -2,13 +2,21 @@ package br.com.alura.screenmatch.model;
 
 import br.com.alura.screenmatch.service.ConsultaChatGPT;
 import br.com.alura.screenmatch.service.traducao.ConsultaMyMemory;
+import jakarta.persistence.*;
 
 import java.util.OptionalDouble;
-
+@Table (name = "series") //anotação que indica que no banco a tabela se chamará series
+@Entity //anotação que indica que vai ser uma tabela do banco
 public class Serie {
+
+    @Id //indica que essa é a chave primária
+    @GeneratedValue (strategy = GenerationType.IDENTITY) //informa a JPA que o id usará a estratégia AutoIncremental
+    private long id;
+    @Column(unique = true) //anotação que indica que não posso ter 2 séries com mesmo nome
     private String titulo;
     private Integer totalTemporadas;
     private Double avaliacao;
+    @Enumerated(EnumType.STRING) //indica que é Enum e como será gravada no banco (Ordinal (1,2,3...) ou String)
     private Categoria genero;
     private String atores;
     private String poster;
@@ -36,6 +44,14 @@ public class Serie {
     }
 
     /*Getters e Setters */
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getTitulo() {
         return titulo;
     }
