@@ -27,6 +27,9 @@ public class Serie {
     @Transient //informa ao JPA que esse objeto não será salvo
     private List<Episodio> episodios = new ArrayList<>();
 
+    //construtor padrão
+    public Serie(){};
+
     /*Série que recebe DadosSerie*/
     public Serie(DadosSerie dadosSerie) {
         this.titulo = dadosSerie.titulo();

@@ -95,13 +95,8 @@ public class Principal {
     }
 
     private void listasSeriesBuscadas(){
-        List<Serie> listaSeries = new ArrayList<>();
-        //pegar os dados de dadosSerie e atribuir na lista de Serie
-        listaSeries = dadosSeries.stream()
-                //pra cada dadoSerie será criada uma nova série
-                .map(dadosSerie -> new Serie(dadosSerie))
-                //coletado numa nova lista
-                        .collect(Collectors.toList());
+        //pegar os dados de dadosSerie cadastrados no banco
+        List<Serie> listaSeries = serieRepository.findAll();
         //imprimindo as séries adicionadas na busca
         listaSeries.stream()
                 //ordenando a listaSerie por Gênero
