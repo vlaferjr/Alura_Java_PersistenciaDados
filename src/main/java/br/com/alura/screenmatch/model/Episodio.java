@@ -1,14 +1,24 @@
 package br.com.alura.screenmatch.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-
+@Table(name = "episodios")
+@Entity
 public class Episodio {
+
+    @Id //indica que essa é a chave primária
+    @GeneratedValue (strategy = GenerationType.IDENTITY) //informa a JPA que o id usará a estratégia AutoIncremental
+    private long id;
     private Integer temporada;
     private String titulo;
     private Integer numeroEpisodio;
     private Double avaliacao;
     private LocalDate dataLancamento;
+
+    @ManyToOne //indica que teremos muitos episódios para uma série
+    private Serie serie;
 
     public Episodio(Integer numeroTemporada, DadosEpisodio dadosEpisodio) {
         this.temporada = numeroTemporada;
@@ -66,6 +76,22 @@ public class Episodio {
 
     public void setDataLancamento(LocalDate dataLancamento) {
         this.dataLancamento = dataLancamento;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
     }
 
     @Override

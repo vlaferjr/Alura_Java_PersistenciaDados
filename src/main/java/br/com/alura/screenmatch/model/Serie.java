@@ -24,7 +24,9 @@ public class Serie {
     private String poster;
     private String sinopse;
 
-    @Transient //informa ao JPA que esse objeto não será salvo
+    //@Transient //informa ao JPA que esse objeto não será salvo
+    @OneToMany (mappedBy = "serie") /*informa que teremos uma série como muitos episódios
+    e que na classe Episódios o mapeamento é feito no atributo Serie*/
     private List<Episodio> episodios = new ArrayList<>();
 
     //construtor padrão
@@ -138,3 +140,4 @@ public class Serie {
                 '}';
     }
 }
+
