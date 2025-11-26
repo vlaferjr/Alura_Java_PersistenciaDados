@@ -25,8 +25,11 @@ public class Serie {
     private String sinopse;
 
     //@Transient //informa ao JPA que esse objeto não será salvo
-    @OneToMany (mappedBy = "serie") /*informa que teremos uma série como muitos episódios
-    e que na classe Episódios o mapeamento é feito no atributo Serie*/
+    /*informa que teremos uma série como muitos episódios
+    e que na classe Episódios o mapeamento é feito no atributo Serie
+
+    Cascade: Todas as alterações que fizermos na Série reflete nos episódios e vice-versa */
+    @OneToMany (mappedBy = "serie", cascade = CascadeType.ALL)
     private List<Episodio> episodios = new ArrayList<>();
 
     //construtor padrão

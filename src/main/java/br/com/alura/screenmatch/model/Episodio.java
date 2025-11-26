@@ -38,6 +38,7 @@ public class Episodio {
         }
     }
 
+
     public Integer getTemporada() {
         return temporada;
     }
@@ -102,4 +103,7 @@ public class Episodio {
                 ", avaliacao=" + avaliacao +
                 ", dataLancamento=" + dataLancamento ;
     }
+
+    //-------- construtor padrão
+    public Episodio() {}
 }
