@@ -29,7 +29,8 @@ public class Serie {
     e que na classe Episódios o mapeamento é feito no atributo Serie
 
     Cascade: Todas as alterações que fizermos na Série reflete nos episódios e vice-versa */
-    @OneToMany (mappedBy = "serie", cascade = CascadeType.ALL)
+    //Eager -> traz as entidades mesmo que não peçamos
+    @OneToMany (mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Episodio> episodios = new ArrayList<>();
 
     //construtor padrão
@@ -126,6 +127,9 @@ public class Serie {
     }
 
     public void setEpisodios(List<Episodio> episodios) {
+        //para cada episódio é mostrado qual a série responsável
+        episodios.forEach(
+                epi -> epi.setSerie(this));
         this.episodios = episodios;
     }
 
@@ -140,6 +144,7 @@ public class Serie {
                 ", atores='" + atores + '\'' +
                 ", poster='" + poster + '\'' +
                 ", sinopse='" + sinopse + '\'' +
+                ", episodios='" + episodios + '\'' +
                 '}';
     }
 }
